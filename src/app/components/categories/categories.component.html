@@ -1,0 +1,14 @@
+<div class="categories">
+
+
+    <p>
+     All Categories
+    </p>
+   <ul class="nav ">
+ 
+    <li class="nav-item" *ngFor="let cat of categories">
+      <a class="nav-link active" routerLink="{{'/products/'+cat.CategoryId}}"> <div class="card"><div class="wrapper"><img src={{baseUrl+cat.Image}} alt=""></div></div>{{cat.CategoryName}}</a>
+    </li>
+
+  </ul>
+    </div>

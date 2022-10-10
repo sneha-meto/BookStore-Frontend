@@ -1,0 +1,29 @@
+.container-fluid {
+    /* display: flex; */
+    align-content: center; 
+
+} 
+
+.wrapper {
+   background-color: #fff;
+    margin: 5%;
+    
+    padding: 15px 0;
+
+}
+
+img{
+    height:35rem;
+} 
+
+.title{
+      
+    font-size: 1.5rem;
+
+}
+.author{color:#5A5A5A;font-size: 0.9rem;
+}
+.desc{color:#5A5A5A;font-size: 1rem;
+}
+
+.btn{margin: 5px;}

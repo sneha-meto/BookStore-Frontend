@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="wrapper row">
+    <div class="col-lg-1">
+     
+    </div>
+   <div class="col-lg-10">
+    <br>
+    <h2>Search Books</h2>
+  
+    <div class="wrapper">
+        <div class="form-inline my-2 my-lg-0">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                  {{type}}
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" (click)="setType('Title')">Title</a>
+                  <a class="dropdown-item" (click)="setType('CategoryName')">Category</a>
+                  <a class="dropdown-item" (click)="setType('ISBN')">ISBN</a>
+                  <a class="dropdown-item" (click)="setType('Author')">Author</a>
+                </div>
+              </div>
+            <input #search class="form-control mr-sm-2 ml-sm-2" type="text" placeholder="Search" aria-label="Search">
+
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="initiateSearch(search.value)" [disabled]="isInactive">Search</button>
+            </div><br>
+
+            <div class="grid">
+        <div class="container" *ngFor="let book of books">
+
+            <img src={{baseUrl+book.Image}} alt="">
+    
+            <div class="body">
+              <div class="title">{{book.Title}}</div>
+              <div class="author">{{book.Author | uppercase}}</div>
+              <div class="desc">{{book.Price | currency :"INR" }} 
+      
+              <button class="btn btn-dark btn-block" (click)="goToDetail(book.BookId)" >View Details</button></div>
+    
+            </div></div>
+            
+        </div> 
+    </div>
+    
+   </div>
+   <div class="col-lg-1"></div>
+    
+</div>

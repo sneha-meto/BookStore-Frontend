@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<div class="wrapper row">
+<div class="col-lg-1"></div>
+<div class="col-lg-8">
+    <br>
+    <h2>Shopping Cart</h2>
+    <br>
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartItems">
+                <td> <img src="/assets/bookstore/{{item.Image}}" alt=""> <span class="title">{{item.Title}}</span></td>
+                <td>{{item.Price|currency:"INR"}}</td>
+                <td><input #qty class="form-control qty" type="number" min="1" (change)="updateQty(item, qty.value)"
+                    name="" id="" [value]="item.Qty"></td>
+                <td>{{item.Price*item.Qty|currency:"INR"}}</td>
+                <td><button class="btn btn-danger" (click)="remove(item.CartItemId)">X</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <table class="table">
+      
+            <tr>
+                <th>Subtotal</th>
+                <td>{{subtotal|currency:"INR"}}</td>
+             
+            </tr>
+         
+            <tr>
+                <th>Discount</th>
+                <td class="discount">- {{discount|currency:"INR"}}</td>
+             
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{subtotal-discount|currency:"INR"}}</td>
+             
+            </tr>
+      
+      
+
+    </table>
+    <app-address (fetchAddress)="applyAddress($event)"></app-address>
+    <input type="button "class="btn btn-dark" value="Checkout" (click)="checkout()">
+    <br><br>
+
+
+
+</div>
+<div class="col-lg-3">
+    <app-coupons (fetchDiscount)="applyDiscount($event)"></app-coupons>
+</div>
+
+
+</div>

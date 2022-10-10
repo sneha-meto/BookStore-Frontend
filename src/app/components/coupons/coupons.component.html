@@ -1,0 +1,19 @@
+
+
+<div class="container">
+
+
+<h4>Available Coupons</h4>
+
+<ul class="nav flex-column nav-pills ">
+ 
+    <li class="nav-item" *ngFor="let coupon of coupons">
+      <div>{{coupon.CouponCode}}</div>
+      <p>{{coupon.Description}}</p>
+      <button class="btn btn-dark"  [disabled]="isInactive"  (click)="clickHandler(coupon)">Apply Coupon</button>
+      <hr>
+    </li>
+
+  </ul>
+
+</div>

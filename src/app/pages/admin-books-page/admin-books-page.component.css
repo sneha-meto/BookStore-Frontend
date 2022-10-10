@@ -1,0 +1,12 @@
+fa-icon:hover{
+    color: #999;
+}
+
+.del{
+    color:red
+}
+
+.grid-wrapper{display: grid;
+grid-template-columns: auto auto auto;
+grid-column-gap: 20px;
+}

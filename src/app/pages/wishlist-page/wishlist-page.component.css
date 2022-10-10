@@ -1,0 +1,41 @@
+.wrapper{margin:3%}
+
+img{   
+    height: 300px;
+    object-fit: cover;}
+    .container{ width: 250px;}
+
+    .grid{
+        display:grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .container{
+        margin:0.5rem;
+    }
+    .title{
+      
+        font-size: 1.1rem;
+
+    }
+    .author{color:#5A5A5A;font-size: 0.9rem;
+    }
+    .desc{color:#5A5A5A}
+
+    .image-container{
+        position: relative;
+
+    }
+
+    a{
+        position: absolute;
+        top:5px;
+        right:10px; 
+    }
+    fa-icon:hover{
+        color:#999
+    }
+    fa-icon{
+        font-size: 2rem;
+        color:red;
+    }

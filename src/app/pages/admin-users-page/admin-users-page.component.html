@@ -1,0 +1,54 @@
+
+<app-navbar></app-navbar>
+
+<div class="wrapper row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-8">
+        <br>
+        <h2>Manage Users</h2>
+        <br>
+        <div class="form-inline my-2 my-lg-0">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                  {{type}}
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" (click)="setType('UserId')">UserId</a>
+                  <a class="dropdown-item" (click)="setType('UserName')">UserName</a>
+                  <a class="dropdown-item" (click)="setType('Email')">Email</a>
+                  <a class="dropdown-item" (click)="setType('Mobile')">Mobile</a>
+                </div>
+              </div>
+            <input #search class="form-control mr-sm-2 ml-sm-2" type="text" placeholder="Search" aria-label="Search">
+
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="initiateSearch(search.value)" [disabled]="isInactive">Search</button>
+            </div><br>
+
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th>User Id</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Active</th>
+                 </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let c of users">
+                        <td>{{c.UserId}}</td>
+                        <td>{{c.UserName}}</td>
+                        <td>{{c.Email}}</td>
+                        <td>{{c.Mobile}}</td>
+                        <td>{{c.Active}} <a (click)="activation(c.UserId,c.Active)"><fa-icon [icon]="['fas', 'right-left']"></fa-icon> </a></td>
+                  
+                    </tr>
+            
+            </tbody>
+    
+        </table>
+        <br>
+
+    </div>
+    <div class="col-lg-1"></div>
+    </div>

@@ -1,0 +1,29 @@
+a>div>div>img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 10%;
+
+ 
+   
+}
+
+.card{
+    border-radius: 25%;
+}
+
+a:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+a{ transition: transform .2s;
+    text-align: center;
+}
+
+.categories{
+    /* text-align: center; */
+    padding: 0px 20px;
+}
+p{
+    font-size: 1.5rem;
+}

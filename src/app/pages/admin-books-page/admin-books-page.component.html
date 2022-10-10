@@ -1,0 +1,191 @@
+
+<app-navbar></app-navbar>
+
+<div class="wrapper row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <br>
+        <h2>Manage Books</h2>
+        <br>
+        <div class="form-inline my-2 my-lg-0">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                  {{type}}
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" (click)="setType('Title')">Title</a>
+                  <a class="dropdown-item" (click)="setType('categoryId')">Category</a>
+                  <a class="dropdown-item" (click)="setType('ISBN')">ISBN</a>
+                  <a class="dropdown-item" (click)="setType('Author')">Author</a>
+                </div>
+              </div>
+            <input #search class="form-control mr-sm-2 ml-sm-2" type="text" placeholder="Search" aria-label="Search">
+
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="initiateSearch(search.value)" [disabled]="isInactive">Search</button>
+            </div><br>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+
+                    <th>Book Id</th>
+                    <th>Category Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Year</th>
+                    <th>Price</th>
+                    <th class="desc" >Description</th>
+                    <th>Postion</th>
+                    <th>Status</th>
+                    <th>Image</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                 </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let b of books">
+                        <td><input #id class="form-control " type="number" name="" id="" value="{{b.BookId}}" [disabled]="true"></td>
+                        <td><input #cid class="form-control " type="number" name="" id="" value="{{b.CategoryId}}" [disabled]="b.notEditable"></td>
+                        <td><input #title class="form-control " type="text" name="" id="" value="{{b.Title}}" [disabled]="b.notEditable"></td>
+                        <td><input #author class="form-control "type="text" name="" id="" value="{{b.Author}}" [disabled]="b.notEditable"></td>
+                        <td><input #isbn class="form-control " type="text" name="" id="" value="{{b['ISBN']}}" [disabled]="b.notEditable"></td>
+                        <td><input #year class="form-control " type="number" name="" id="" value="{{b.Year}}" [disabled]="b.notEditable"></td>
+                        <td><input #price class="form-control " type="number" name="" id="" value="{{b.Price}}" [disabled]="b.notEditable"></td>
+                        <td><input #desc  class="form-control "type="text" name="" id="" value="{{b.Description}}" [disabled]="b.notEditable"></td>
+                        <td><input #pos class="form-control "type="number" name="" id="" value="{{b.Position}}" [disabled]="b.notEditable"></td>
+                        <td><input #status class="form-control "type="text" name="" id="" value="{{b.Status}}" [disabled]="b.notEditable"></td>
+                        <td><input #img class="form-control "type="text" name="" id="" value="{{b.Image}}" [disabled]="b.notEditable"></td>
+                       
+                        <td> <a (click)="delete(b.BookId)"><fa-icon class="del" [icon]="['fas', 'circle-minus']"></fa-icon> </a></td>
+                        <td> <a (click)="b.notEditable=!b.notEditable"><fa-icon class="edit" [icon]="['fas', 'pen-to-square']"></fa-icon> </a></td>
+                        <td> <a [hidden]="b.notEditable" (click)="save(id.value,cid.value,title.value,isbn.value,year.value,price.value,desc.value,img.value,pos.value,status.value,author.value)"><fa-icon class="edit" [icon]="['fas', 'floppy-disk']"></fa-icon> </a></td>
+                       
+                  
+                    </tr>
+            
+            </tbody>
+    
+        </table>
+        <br>
+    <div class="row">
+
+        <div class="col-10">
+       
+        <h5>Add New Book</h5>
+    <form [formGroup]="bookForm" (submit)="submitForm() " >
+      <div class="grid-wrapper">
+
+        <div class="form-group">
+            <label >Category Id</label>
+            <input type="text" class="form-control" formControlName="categoryId" required
+                [class.is-invalid]="categoryId?.touched && categoryId?.invalid">
+            <div *ngIf="categoryId?.errors && categoryId?.touched">
+                <small class="text-danger" *ngIf="categoryId?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Title</label>
+            <input type="text" class="form-control" formControlName="title" required
+                [class.is-invalid]="title?.touched && title?.invalid">
+            <div *ngIf="title?.errors && title?.touched">
+                <small class="text-danger" *ngIf="title?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label >ISBN</label>
+            <input type="text" class="form-control" formControlName="isbn" required
+                [class.is-invalid]="isbn?.touched && isbn?.invalid">
+            <div *ngIf="isbn?.errors && isbn?.touched">
+                <small class="text-danger" *ngIf="isbn?.errors?.['required']">This is required</small>
+                <small class="text-danger" *ngIf="isbn?.errors?.['pattern']">isbn should be 13 digits</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Year</label>
+            <input type="number" class="form-control" formControlName="year" required
+                [class.is-invalid]="year?.touched && year?.invalid">
+            <div *ngIf="year?.errors && year?.touched">
+                <small class="text-danger" *ngIf="year?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label >Price</label>
+            <input type="number" class="form-control" formControlName="price" required
+                [class.is-invalid]="price?.touched && price?.invalid">
+            <div *ngIf="price?.errors && price?.touched">
+                <small class="text-danger" *ngIf="price?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label >Description</label>
+            <input type="text" class="form-control" formControlName="description" required
+                [class.is-invalid]="description?.touched && description?.invalid">
+            <div *ngIf="description?.errors && description?.touched">
+                <small class="text-danger" *ngIf="description?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Author</label>
+            <input type="text" class="form-control" formControlName="author" required
+                [class.is-invalid]="author?.touched && author?.invalid">
+            <div *ngIf="author?.errors && author?.touched">
+                <small class="text-danger" *ngIf="author?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label >Image</label>
+            <input type="text" class="form-control" formControlName="image" required
+                [class.is-invalid]="image?.touched && image?.invalid">
+            <div *ngIf="image?.errors && image?.touched">
+                <small class="text-danger" *ngIf="image?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Status</label>
+            <input type="checkbox" class="form-control" formControlName="status" >
+        </div>
+
+        <div class="form-group">
+            <label >Position</label>
+            <input type="number" class="form-control" formControlName="position" required
+                [class.is-invalid]="position?.touched && position?.invalid">
+            <div *ngIf="position?.errors && position?.touched">
+                <small class="text-danger" *ngIf="position?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <br>
+    </div>
+        <input type="submit" value="Submit" [disabled]="bookForm['invalid']" class="btn btn-block btn-dark">
+      
+    </form>
+    <br>
+</div>
+    <div class="col-2"></div>
+</div>
+    </div>
+    <div class="col-lg-1"></div>
+    </div>

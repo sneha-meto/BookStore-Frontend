@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <br>
+        <h2>Welcome Admin</h2>
+        <br>
+        <div class="grid">
+        <button class="btn btn-dark" routerLink="/admin/categories" ><fa-icon [icon]="['fas', 'grip']"></fa-icon> <br> Categories</button>
+        <button class="btn btn-dark" routerLink="/admin/books" ><fa-icon [icon]="['fas', 'book']"></fa-icon> <br> Books</button>
+        <button class="btn btn-dark" routerLink="/admin/users" ><fa-icon [icon]="['fas', 'user-group']"></fa-icon> <br> Users</button>
+        <button class="btn btn-dark" routerLink="/admin/orders" ><fa-icon [icon]="['fas', 'shopping-bag']"></fa-icon> <br> Orders</button>
+        <button class="btn btn-dark" routerLink="/admin/coupons" ><fa-icon [icon]="['fas', 'tags']"></fa-icon> <br> Coupons</button>
+        </div>
+        <br>
+
+        <div class="categories">
+
+            <h4>All Categories</h4>
+           <ul class="nav ">
+         
+            <li class="nav-item" *ngFor="let cat of categories">
+              <a class="nav-link active" routerLink="{{'/products/'+cat.CategoryId}}"> <div class="card"><div class="wrapper"><img src={{baseUrl+cat.Image}} alt=""></div></div>{{cat.CategoryName}}</a>
+            </li>
+        
+          </ul>
+            </div>
+
+
+
+
+
+    </div>
+
+
+    <div class="col-2"></div>
+</div>

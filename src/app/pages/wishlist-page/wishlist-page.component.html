@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="wrapper">
+    <h2>My Wishlist</h2>
+    <div class="grid">
+    
+        <div class="container" *ngFor="let item of wishItems">
+            <div class="image-container">
+                <img src={{baseUrl+item.Image}} alt="">
+                <a (click)="remove(item.WishlistId)"> <fa-icon [icon]="['fas', 'circle-minus']"></fa-icon></a>
+            </div>
+            <div class="body">
+                <div class="title">{{item.Title}}</div>
+                <div class="author">{{item.Author | uppercase}}</div>
+                <div class="desc">{{item.Price | currency :"INR" }} 
+                    <button class="btn border btn-light btn-block" (click)="goToDetail(item.BookId)" >View Details</button>
+                    <button class="btn btn-dark btn-block" (click)="addToCart(item.BookId)" >Add To Cart</button>
+                    
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>

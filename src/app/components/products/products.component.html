@@ -1,0 +1,21 @@
+<br>
+<h2>Books</h2>
+<div class="wrapper">
+ 
+    <div class="container" *ngFor="let book of books">
+        <img src={{baseUrl+book.Image}} alt="">
+
+        <div class="body">
+<div class="title">{{book.Title}}</div>
+<div class="author">{{book.Author | uppercase}}</div>
+<div class="desc">{{book.Price | currency :"INR" }} 
+  
+    
+    
+    <button class="btn btn-dark btn-block" (click)="goToDetail(book.BookId)" >View Details</button></div>
+
+        </div>
+        
+
+    </div>
+</div>

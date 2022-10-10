@@ -1,0 +1,26 @@
+img{   
+    height: 350px;
+    object-fit: cover;}
+    .container{ width: 250px;}
+
+    .wrapper{
+        display:grid;
+        grid-template-columns: auto auto auto auto;
+    }
+
+    .container{
+        margin:0.8rem;
+    }
+    .title{
+      
+        font-size: 1.1rem;
+
+    }
+    .author{color:#5A5A5A;font-size: 0.9rem;
+    }
+    .desc{color:#5A5A5A}
+
+
+
+
+ 

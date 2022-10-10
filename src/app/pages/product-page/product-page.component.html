@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="row ">
+
+    <div class="col-lg-2"></div>
+
+    <div class="container-fluid col-lg-8">
+
+    <div class="wrapper row ">
+      
+        <div class="col-lg-6">
+            <img class="img img-fluid" src="/assets/bookstore/{{book.Image}}" alt="">
+        </div>
+        <div class="col-lg-6">
+            <br>
+            <div class="title">{{book.Title}}</div>
+            <div class="author">{{book.Author| uppercase}}</div><br>
+            <p class="desc">{{book.Description}}</p>
+            <div class="title">{{book.Price| currency:"INR"}}</div>
+            <button class="btn btn border" (click)="AddToWishlist(book.BookId)">Add to Wishlist</button>
+            <button class="btn btn-dark" (click)="AddToCart(book.BookId)">Add to Cart</button>
+        </div>
+
+    </div>
+
+    
+
+</div>
+<div class="col-lg-2"></div>
+
+</div>

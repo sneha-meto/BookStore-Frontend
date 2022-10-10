@@ -1,0 +1,92 @@
+
+<app-navbar></app-navbar>
+
+<div class="wrapper row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-8">
+        <br>
+        <h2>Coupons</h2>
+        <br>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th>Coupon Id</th>
+                    <th>Coupon Code</th>
+                    <th>Descrition</th>
+                    <th>Discount</th>
+                    <th>Active</th>
+                 </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let c of coupons">
+                        <td>{{c.CouponId}}</td>
+                        <td>{{c.CouponCode}}</td>
+                        <td>{{c.Description}}</td>
+                        <td>{{c.Discount}}</td>
+                        <td>{{c.Active}} <a (click)="activation(c.CouponId,c.Active)"><fa-icon [icon]="['fas', 'right-left']"></fa-icon> </a></td>
+                  
+                    </tr>
+            
+            </tbody>
+    
+        </table>
+        <br>
+    <div class="row">
+
+        <div class="col-6">
+       
+        <h5>Add New Coupon</h5>
+    <form [formGroup]="couponForm" (submit)="submitForm() " >
+      
+
+        <div class="form-group">
+            <label >Coupon Code</label>
+            <input type="text" class="form-control" formControlName="couponCode" required
+                [class.is-invalid]="couponCode?.touched && couponCode?.invalid">
+            <div *ngIf="couponCode?.errors && couponCode?.touched">
+                <small class="text-danger" *ngIf="couponCode?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Description</label>
+            <input type="text" class="form-control" formControlName="description" required
+                [class.is-invalid]="description?.touched && couponCode?.invalid">
+            <div *ngIf="description?.errors && description?.touched">
+                <small class="text-danger" *ngIf="description?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Discount</label>
+            <input  type="number" class="form-control" formControlName="discount"
+               required [class.is-invalid]="discount?.touched && discount?.invalid">
+            <div *ngIf="discount?.errors && discount?.touched">
+                <small class="text-danger" *ngIf="discount?.errors?.['required']">This is required</small>
+                <small class="text-danger" *ngIf="discount?.errors?.['min']">discount should be between 0 and 1</small>
+                <small class="text-danger" *ngIf="discount?.errors?.['max']">discount should be between 0 and 1</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Active</label>
+            <input type="checkbox" class="form-control" formControlName="active" >
+             
+        </div>
+
+ 
+        <br>
+
+        <input type="submit" value="Submit" [disabled]="couponForm['invalid']" class="btn btn-block btn-dark">
+      
+
+
+    </form>
+</div>
+    <div class="col-6"></div>
+</div>
+    </div>
+    <div class="col-lg-1"></div>
+    </div>

@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+
+<div class="wrapper row">
+<div class="col-lg-1"></div>
+<div class="col-lg-8">
+    <br>
+    <h2>Orders</h2>
+    <br>
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>OrderId</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>UserId</th>
+                <th>AddressId</th>
+                <th>CouponId</th>
+                <th>Net Amount</th>
+                
+            </tr>
+        </thead>
+        <tbody >
+
+            <ng-container *ngFor="let order of orders">
+                <tr >
+                    <td>{{order.OrderId}}</td>
+                    <td>{{order.Date|date: 'dd/MM/yyyy'}}</td>
+                    <td>{{order.Amount|currency:"INR"}}</td>
+                    <td>{{order.UserId}}</td>
+                    <td>{{order.AddressId}}</td>
+                    <td>{{order.CouponId}}</td>
+                    <td>{{order.NetAmount|currency:"INR"}}</td>
+                    <td> <button class="btn btn-dark" (click)="expand(order)" > View Items</button> </td>
+                   
+                </tr>
+                <ng-container *ngIf="order.isExpanded">
+                    <tr>
+                        <td>ItemId</td>
+                        <td>BookId</td>
+                        <td>Image</td>
+                        <td>Title</td>
+                        <td>Qty</td>
+                        <td>Unit Price</td>
+                        
+                    
+                    </tr>
+                    <tr *ngFor="let orderItem of orderItems[order.OrderId]">
+                        <td>{{orderItem.ItemId}}</td>
+                        <td>{{orderItem.BookId}}</td>
+                        <td><img src="{{'/assets/bookstore/'+orderItem.Image}}" alt=""> </td>
+                        <td>{{orderItem.title}}</td>
+                        <td>{{orderItem.Qty}}</td>
+                        <td>{{orderItem.Price|currency:"INR"}}</td>
+                        
+                    </tr>
+
+                </ng-container>
+
+            </ng-container>
+            
+       
+          
+        </tbody>
+
+    </table>
+</div>
+<div class="col-lg-1"></div>
+</div>

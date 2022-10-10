@@ -1,0 +1,96 @@
+<div class="container">
+
+
+    <h4>Addresses</h4>
+
+    <button class="btn-light border" (click)="NewAddress()">Add New Address</button>
+    
+  <br>
+
+    <form [formGroup]="addressForm" (submit)="submitForm() " [hidden]="isHidden">
+      
+
+        <div class="form-group">
+            <label >Building</label>
+            <input type="text" class="form-control" formControlName="building" required
+                [class.is-invalid]="building?.touched && building?.invalid">
+            <div *ngIf="building?.errors && building?.touched">
+                <small class="text-danger" *ngIf="building?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Street</label>
+            <input type="text" class="form-control" formControlName="street" required
+                [class.is-invalid]="street?.touched && building?.invalid">
+            <div *ngIf="street?.errors && street?.touched">
+                <small class="text-danger" *ngIf="street?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Locality</label>
+            <input type="text" class="form-control" formControlName="locality" required
+                [class.is-invalid]="locality?.touched && building?.invalid">
+            <div *ngIf="locality?.errors && locality?.touched">
+                <small class="text-danger" *ngIf="locality?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >District</label>
+            <input type="text" class="form-control" formControlName="district" required
+                [class.is-invalid]="district?.touched && building?.invalid">
+            <div *ngIf="district?.errors && district?.touched">
+                <small class="text-danger" *ngIf="district?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Pin</label>
+            <input  type="text" class="form-control" formControlName="pin"
+               required [class.is-invalid]="pin?.touched && pin?.invalid">
+            <div *ngIf="pin?.errors && pin?.touched">
+                <small class="text-danger" *ngIf="pin?.errors?.['required']">This is required</small>
+                <small class="text-danger" *ngIf="pin?.errors?.['pattern']">Pin should be 6
+                    digits long</small>
+            </div>
+        </div>
+        <br>
+
+        <input type="submit" value="Submit" [disabled]="addressForm['invalid']" class="btn btn-block btn-dark">
+      
+
+
+    </form>
+    <br>
+    
+    
+    <ul class="flex-column ">
+     
+        <li class="nav-item" *ngFor="let adr of addresses">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div>{{adr.Building+", "+adr.Street}}</div>
+                    <div>{{adr.Locality+", "+adr.District}}</div>
+                    <div>{{"PIN: "+adr.Pin}}</div>
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-danger"    (click)="deleteHandler(adr.AddressId)">Remove</button>
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-dark"  [disabled]="isInactive"  (click)="selectHandler(adr)">Select</button>
+                </div>
+            </div>
+        
+          <hr>
+        </li>
+    
+      </ul>
+      <br>
+    
+    </div>

@@ -1,0 +1,113 @@
+
+<app-navbar></app-navbar>
+
+<div class="wrapper row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <br>
+        <h2>Manage Categories</h2>
+        <br>
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th >Category Id</th>
+                    <th>Category Name</th>
+                    <th class="desc" >Description</th>
+                    <th>Image</th>
+                    <th>Postion</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                 </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let c of categories">
+                        <td><input #id class="form-control " type="number" name="" id="" value="{{c.CategoryId}}" [disabled]="true"></td>
+                        <td><input #name class="form-control " type="text" name="" id="" value="{{c.CategoryName}}" [disabled]="c.notEditable"></td>
+                        <td><input #desc  class="form-control "type="text" name="" id="" value="{{c.Description}}" [disabled]="c.notEditable"></td>
+                        <td><input #img class="form-control "type="text" name="" id="" value="{{c.Image}}" [disabled]="c.notEditable"></td>
+                        <td><input #pos class="form-control "type="text" name="" id="" value="{{c.Position}}" [disabled]="c.notEditable"></td>
+                        <td><input #status class="form-control "type="text" name="" id="" value="{{c.Status}}" [disabled]="c.notEditable"></td>
+                        <td> <a (click)="delete(c.CategoryId)"><fa-icon class="del" [icon]="['fas', 'circle-minus']"></fa-icon> </a></td>
+                        <td> <a (click)="c.notEditable=!c.notEditable"><fa-icon class="edit" [icon]="['fas', 'pen-to-square']"></fa-icon> </a></td>
+                        <td> <a [hidden]="c.notEditable" (click)="save(id.value,name.value,desc.value,img.value,pos.value,status.value)"><fa-icon class="edit" [icon]="['fas', 'floppy-disk']"></fa-icon> </a></td>
+                        
+                  
+                    </tr>
+            
+            </tbody>
+    
+        </table>
+        <br>
+    <div class="row">
+
+        <div class="col-6">
+       
+        <h5>Add New Category</h5>
+    <form [formGroup]="categoryForm" (submit)="submitForm() " >
+      
+
+        <div class="form-group">
+            <label >Category Name</label>
+            <input type="text" class="form-control" formControlName="categoryName" required
+                [class.is-invalid]="categoryName?.touched && categoryName?.invalid">
+            <div *ngIf="categoryName?.errors && categoryName?.touched">
+                <small class="text-danger" *ngIf="categoryName?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Description</label>
+            <input type="text" class="form-control" formControlName="description" required
+                [class.is-invalid]="description?.touched && description?.invalid">
+            <div *ngIf="description?.errors && description?.touched">
+                <small class="text-danger" *ngIf="description?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Image</label>
+            <input type="text" class="form-control" formControlName="image" required
+                [class.is-invalid]="image?.touched && image?.invalid">
+            <div *ngIf="image?.errors && image?.touched">
+                <small class="text-danger" *ngIf="image?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label >Status</label>
+            <input type="checkbox" class="form-control" formControlName="status" >
+        </div>
+
+        <div class="form-group">
+            <label >Position</label>
+            <input type="number" class="form-control" formControlName="position" required
+                [class.is-invalid]="position?.touched && position?.invalid">
+            <div *ngIf="position?.errors && position?.touched">
+                <small class="text-danger" *ngIf="position?.errors?.['required']">This is required</small>
+                
+            </div>
+        </div>
+
+
+
+
+
+ 
+        <br>
+
+        <input type="submit" value="Submit" [disabled]="categoryForm['invalid']" class="btn btn-block btn-dark">
+      
+
+
+    </form>
+</div>
+    <div class="col-6"></div>
+</div>
+    </div>
+    <div class="col-lg-1"></div>
+    </div>
